@@ -24,19 +24,21 @@
       <div id="content">
         <section>
           <% for (var i=0; i < members.length; i++) { %>
-            <div class="bandmate-instrument">
-              <div class="instrument">
-                <img class="bandmate-instrument-pic" src="/images/<%= members[i].instrumentImg %>" />
+            <div class="bandmate-container">
+              <div class="bandmate-instrument">
+                <div class="instrument">
+                  <img class="bandmate-instrument-pic" src="/images/<%= members[i].instrumentImg %>" />
+                </div>
+                <div class="bandmate-name"><%= members[i].userName %></div>
               </div>
-              <div class="bandmate-name"><%= members[i].userName %></div>
-            </div>          
+            </div>
           <% } %>
         </section>
 
         <section id="my-instrument">
           <h2><%= currentUser.userName %></h2>
           <div>
-            <img width="200" length="200" src="/images/<%= currentUser.instrumentImg %>" />
+            <img width="200" length="200" src="/images/<%= currentUser.instrumentImg %>" /> 
           </div>
           <% if(currentUser.instrument === 'guitar') { %>
             <% include guitar-instructions %>
