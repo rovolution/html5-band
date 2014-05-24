@@ -47,7 +47,7 @@ var users = {};
 
 //If the client just connected
 io.sockets.on('connection', function(socketObj) {
-    console.log("socketObj--------",socketObj);
+    console.log("socketObj--------",socketObj.id);
   	io.sockets.emit("connected",{message:"is connected",id:socketObj.id});
 
   	users[socketObj.id] = socketObj.id;

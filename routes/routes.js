@@ -38,8 +38,7 @@ exports.create = function(req, res) {
  */
 
 exports.list = function(req, res){
-  var data = [];
-  res.render('list', {data:data});
+  res.render('list', {data:bands});
 };
 
 
