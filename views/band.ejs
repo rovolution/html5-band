@@ -33,7 +33,7 @@
           <% } %>
         </section>
 
-        <section id="my-instrument">
+        <section id="my-instrument" data-instrument="<%= currentUser.instrument %>">
           <h2><%= currentUser.userName %></h2>
           <div>
             <img width="200" length="200" src="/images/<%= currentUser.instrumentImg %>" />
