@@ -1,5 +1,6 @@
 
 $(document).ready(function() {
+<<<<<<< Updated upstream
 
 // Map keyboard presses to instrument and note metadata
 var keyPressToNoteElemId = {
@@ -38,24 +39,30 @@ var keyPressToNoteElemId = {
 };
 
 
+=======
+	var roomId = window.location.pathname.slice(7).toString();
+	console.log("roomId",roomId);
+>>>>>>> Stashed changes
 	// connect the socket.io server
 	var socket = io.connect('http://localhost')
 	//define socket events
 
 	socket.on("connect",function(){
+		socket.emit("room",roomId)
 		$('#my-instrument').on('click', function(e){
-			console.log("clicked");
-			socket.emit('sound',{message:"hey you"});
+			socket.emit('sound',"hey you");
 		});
 		
 
 	});
 
+
 	// attach events
 	socket.on("serverSound",function(data){
 		console.log("sound---------",data);
-		});
+	});
 	socket.on("connected",function(data){
+
 	console.log("----connected",data);
 	});
 	socket.on("disconnected",function(data){

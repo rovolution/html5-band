@@ -50,7 +50,10 @@ var users = {};
 
 //If the client just connected
 io.sockets.on('connection', function(socketObj) {
-    console.log("socketObj--------",socketObj.id);
+
+    socketObj.on('room', function(room) {
+        socketObj.join(room);
+    });
   	io.sockets.emit("connected",{message:"is connected",id:socketObj.id});
 
   	users[socketObj.id] = socketObj.id;
@@ -58,7 +61,7 @@ io.sockets.on('connection', function(socketObj) {
 
   	socketObj.on('sound', function(message){
 
-          io.sockets.emit('soundServer', {message:message})
+          io.sockets.emit('serverSound', {message:message})
       });
     socketObj.on("disconnect",function(){
   		io.sockets.emit("disconnected",{message:"is disconnected",id:users[socketObj.id]});
