@@ -13,7 +13,7 @@ var keyPressToNoteElemId = {
 		"z": "a",
 		"x": "a-sharp",
 		"c": "b"
-	}
+	},
 	"guitar": {
 		"a": "string-e",
 		"s": "string-b",
@@ -25,11 +25,11 @@ var keyPressToNoteElemId = {
 		"k": "d",
 		"l": "dm",
 		";": "e"
-	}
+	},
 	"drums": {
 		"f": "bass",
 		"g": "snare",
-		"h": "high-hat",
+		"h": "hi-hat",
 		"j": "cymbal"
 	}
 };
