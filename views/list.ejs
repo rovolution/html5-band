@@ -24,7 +24,7 @@
       </div>
        <ul>
         <% for(var i=0; i<data.length; i++) {%>
-           <li><%= data[i].name %></li>
+           <a href="/bands/<%=data[i].id %>/join"><li><%= data[i].name %></li></a>
         <% } %>
       </ul>
     
