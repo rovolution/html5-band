@@ -12,6 +12,11 @@
 	margin: 0 54px;
 }
 
+.bandmate-instrument-pic {
+	width: 100px;
+	height: 90px;
+}
+
 .bandmate-name {
 	text-align: center;
 	font-weight: bold;
@@ -19,4 +24,9 @@
 
 #my-instrument {
 	margin-top: 100px;
+}
+
+#keyboard-mappings {
+	border: 2px solid gray;
+	border-radius: 7px;	
 }
