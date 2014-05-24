@@ -4,17 +4,7 @@ var bands = [];
 /*
  * GET home page.
  */
-var data = [
-{
-	name:"Yalcin"
-},
-{
-	name:"Rohit "
-},{
-	name:"Ed"
-}
 
-]
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
@@ -47,8 +37,18 @@ exports.create = function(req, res) {
  * Shows a list of existing bands.
  */
 
+exports.list = function(req, res){
+  var data = [];
+  res.render('list', {data:data});
+};
+
+
+/*
+ * Input user info right before joining a band
+ */
+
 exports.join = function(req, res){
-  res.render('join', {data:data});
+  res.render('join');
 };
 
 

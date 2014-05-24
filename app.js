@@ -26,11 +26,16 @@ if ('development' == app.get('env')) {
 }
 var data ={apple:"Apple"};
 //index route
+
+// App Routing
 app.get('/', routes.index);
+app.get('/bands', routes.list);
+app.get('/bands/:id', routes.band);
+app.get('/bands/:id/join', routes.join);
+
 app.get('/create', routes.chooseName);
 app.post('/create', routes.create);
-app.get('/join', routes.join);
-app.get('/band/:id', routes.band);
+
  
 //Create the server
 var server = http.createServer(app)
