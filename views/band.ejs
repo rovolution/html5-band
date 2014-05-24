@@ -23,18 +23,14 @@
       <h1><%= name %></h1>
       <div id="content">
         <section>
-          <div class="bandmate-instrument">
-            <div class="instrument">(instrument image)</div>
-            <div class="bandmate-name">Ed</div>
-          </div>
-          <div class="bandmate-instrument">
-            <div class="instrument">(instrument image)</div>
-            <div class="bandmate-name">Rohit</div>
-          </div>
-          <div class="bandmate-instrument">
-            <div class="instrument">(instrument image)</div>
-            <div class="bandmate-name">Yalcin</div>
-          </div>
+          <% for var i in members { %>
+            <div class="bandmate-instrument">
+              <div class="instrument">
+                <img src="<%= instrumentImg %>" />
+              </div>
+              <div class="bandmate-name"><%= name %></div>
+            </div>          
+          <% } %>
         </section>
 
         <section id="my-instrument">

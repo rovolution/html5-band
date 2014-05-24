@@ -57,15 +57,13 @@ exports.join = function(req, res){
  */
 
 exports.band = function(req, res){
-	console.log('bands', bands)
-
 	//Get band that matches the ID in URL
 	var band = bands.filter(function(band) {
 		return band.id = req.params.id;
 	})[0]; 
+
 	if (band) {
-		console.log("band", band)
-	  res.render('band', { name: band.name });
+	  res.render('band', { name: band.name, members: band.members });
 	}
 	else res.send(500, "No band found")
 };
