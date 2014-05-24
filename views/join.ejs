@@ -20,7 +20,7 @@
   <body>
     <div class="container">
       	<h1>HTML5 Band</h1>
-      	<form>
+      	<form action="/join">
       		<fieldset class="form-section">
 		  		<strong>What's your Name:</strong> <input type="text" name="username"><br>
 		  	</fieldset>
@@ -51,6 +51,7 @@
 			  		</label>
 		  		</div>
 		  	</fieldset>
+		  	<input type="hidden" name="band" value="<%= band_id %>" />
 		  	<input type="submit" class="btn btn-lg btn-primary" value="Start Jamming!"/>
 		</form>
     </div><!-- /.container -->

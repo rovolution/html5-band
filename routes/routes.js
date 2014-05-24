@@ -47,7 +47,7 @@ exports.list = function(req, res){
  */
 
 exports.join = function(req, res){
-  res.render('join');
+  res.render('join', { band_id: req.param("id") });
 };
 
 
