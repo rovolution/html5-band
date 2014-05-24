@@ -29,7 +29,7 @@ exports.create = function(req, res) {
 	bands.push(newBand);
 
 	//Take user to join band page to select name and instrument 
-	res.redirect('/bands/' + newBand.id + '/join');
+	res.send(newBand.id);
 }
 
 

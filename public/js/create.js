@@ -2,7 +2,11 @@ $(document).ready(function() {
     $('#create-button').click(function() {
     	var bandName = $("#band-name-input").val();
     	console.log("bandname", bandName);
-    	$.post('/create', {"bandName": bandName});
+    	$.post('/create', 
+    		{"bandName": bandName},
+    		function(id) {
+    			window.location = "/bands/" + id + "/join"
+    		});
     });
 });
 
