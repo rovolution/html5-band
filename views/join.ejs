@@ -1,1 +1,66 @@
-The page where you input your username and selct instrument
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>HTML5 Band</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/vendor/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/join.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container">
+      	<h1>HTML5 Band</h1>
+      	<form action="/join">
+      		<fieldset class="form-section">
+		  		<strong>What's your Name:</strong> <input type="text" name="username"><br>
+		  	</fieldset>
+		  	<fieldset class="form-section">
+		  		<strong>Pick Your Instrument:</strong><br>
+		  		<div class="select-instrument">
+		  			<label for="select-guitar">
+			  			<img src="/images/guitar.jpg" class="select-instrument-img"></img>
+			  			<div>
+			  				<input id="select-guitar" type="radio" name="instrument" value="guitar"> Guitar</input>
+			  			</div>
+		  			</label>
+		  		</div>
+		  		<div class="select-instrument">
+		  			<label for="select-piano">
+			  			<img src="/images/piano.jpg" class="select-instrument-img"></img>
+			  			<div>
+			  				<input id="select-piano" type="radio" name="instrument" value="piano"> Piano</input>
+			  			</div>
+		  			</label>
+		  		</div>
+		  		<div class="select-instrument">
+		  			<label for="select-drums">
+			  			<img src="/images/drums.jpg" class="select-instrument-img"></img>
+			  			<div>
+			  				<input id="select-drums" type="radio" name="instrument" value="drums"> Drums</input>
+			  			</div>
+			  		</label>
+		  		</div>
+		  	</fieldset>
+		  	<input type="hidden" name="band" value="<%= band_id %>" />
+		  	<input type="submit" class="btn btn-lg btn-primary" value="Start Jamming!"/>
+		</form>
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+  </body>
+</html>
