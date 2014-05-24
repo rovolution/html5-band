@@ -27,8 +27,11 @@ if ('development' == app.get('env')) {
 
 //index route
 app.get('/', routes.index);
-app.get('/create', routes.create);
+app.get('/create', routes.chooseName);
+app.post('/create', routes.create);
 app.get('/join', routes.join);
+
+
  
 //Create the server
 var server = http.createServer(app)
