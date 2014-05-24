@@ -3,8 +3,7 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
+var routes = require('./routes/routes.js');
 var http = require('http');
 var path = require('path');
 var socketio = require('socket.io')
@@ -28,8 +27,8 @@ if ('development' == app.get('env')) {
 
 //index route
 app.get('/', routes.index);
-// app.get('/create', routes.create);
-// app.get('/join', routes.join);
+app.get('/create', routes.create);
+app.get('/join', routes.join);
  
 //Create the server
 var server = http.createServer(app)
@@ -63,15 +62,6 @@ io.sockets.on('connection', function(socketObj) {
      });
   
 });
-
-app.get("/:id",function(req,res){
-   var idName = req.params.id;
-   console.log("data by id" + idName);
-   res.render('user',{id:idName });
-});
-
-
-
 
 server.listen(3000, function(){
   console.log('Express server listening on port ' + app.get('port'));
