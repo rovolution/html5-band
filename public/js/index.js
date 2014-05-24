@@ -1,3 +1,9 @@
+// $(document).ready(function() {
+//     $('#create').click(function() {
+//     	//add some cray animation
+//     });
+// });
+
 
 // connect the socket.io server
 var socket = io.connect('http://localhost')
