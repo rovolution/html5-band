@@ -38,7 +38,14 @@
           <div>
             <img width="200" length="200" src="/images/<%= currentUser.instrumentImg %>" />
           </div>
-          <% include guitar-instructions %>
+          <% if(currentUser.instrument === 'guitar') { %>
+            <% include guitar-instructions %>
+          <% } else if(currentUser.instrument === 'piano') { %>
+            <% include piano-instructions %>
+          <% } else { %>
+            <% include drums-instructions %>
+          <% } %>
+
         </section>
       </div>
     </div><!-- /.container -->
