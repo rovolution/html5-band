@@ -9,7 +9,7 @@ socket.on("connect",function(){
 });
 
 // attach events
-socket.on("serverMessage",function(data){
+socket.on("sound",function(data){
 
 });
 socket.on("connected",function(data){

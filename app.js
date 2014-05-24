@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
+var data ={apple:"Apple"};
 //index route
 app.get('/', routes.index);
 app.get('/create', routes.create);
@@ -46,8 +46,8 @@ io.sockets.on('connection', function(socketObj) {
   	users[socketObj.id] = socketObj.id;
       io.sockets.emit('id',users);
 
-  	socketObj.on('clientMessage', function(message){
-          io.sockets.emit('serverMessage', {message:message,id:users[socketObj.id]})
+  	socketObj.on('sound', function(message){
+          io.sockets.emit('sound', {message:message,id:users[socketObj.id]})
       });
     socketObj.on("disconnect",function(){
   		io.sockets.emit("disconnected",{message:"is disconnected",id:users[socketObj.id]});

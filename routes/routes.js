@@ -2,7 +2,17 @@
 /*
  * GET home page.
  */
+var data = [
+{
+	name:"Yalcin"
+},
+{
+	name:"Rohit "
+},{
+	name:"Ed"
+}
 
+]
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
@@ -22,5 +32,5 @@ exports.create = function(req, res){
  */
 
 exports.join = function(req, res){
-  res.render('join', { title: 'Express' });
+  res.render('join', {data:data});
 };
