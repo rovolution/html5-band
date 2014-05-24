@@ -8,8 +8,10 @@
 	display: inline-block;
 	width: 300px;
 	height: 300px;
+	position: relative;
 }
 .bandmate-instrument {
+	background-color: #ffffff;
 	display: inline-block;
 	border: 1px black solid;
 	border-radius: 1000px; /* Makes it a circle */
@@ -24,31 +26,35 @@
 }
 
 .bandmate-instrument.active {
-	/*background-color: #00ff00;*/
 	width: 300px;
 	height: 300px;
 	top: 0px;
 	left: 0px;
 	transition: background-color 0.1s, width 0.5s, height 0.5s, top 0.5s, left 0.5s;
 }
-/*
+
 .soundwave {
-	border: 1px black solid;
-	width: 10px;
-	height: 10px;
-	border-radius: 100px;
-	position: relative;
-	top: 55px;
-	left: 45px;
-	transition: width 0.5s, height 0.5s;
+	display: inline-block;
+	border-radius: 1000px; /* Makes it a circle */
+	width: 200px;
+	height: 200px;
+	padding: 10px;
+	margin: 0 54px;
+	position: absolute;
+	top: 50px;
+	left: 50px;
+	transition: background-color 0.1s, width 0.5s, height 0.5s, top 0.5s, left 0.5s;
 }
 
 .soundwave.active {
-	width: 100px;
-	height: 100px;
-	transition: width 0.5s, height 0.5s;
+	background-color: #cccccc;
+	width: 300px;
+	height: 300px;
+	top: 0px;
+	left: 0px;
+	transition: background-color 0.1s, width 0.5s, height 0.5s, top 0.5s, left 0.5s;
 }
-*/
+
 .bandmate-instrument-pic {
 	margin-top: 40px;
 	width: 100px;
