@@ -29,6 +29,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/create', routes.create);
 app.get('/join', routes.join);
+app.get('/band/:id', routes.band);
  
 //Create the server
 var server = http.createServer(app)

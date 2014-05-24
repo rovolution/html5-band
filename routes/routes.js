@@ -24,3 +24,12 @@ exports.create = function(req, res){
 exports.join = function(req, res){
   res.render('join', { title: 'Express' });
 };
+
+
+/*
+ * Shows the band!
+ */
+
+exports.band = function(req, res){
+  res.render('band', { title: 'Express' });
+};
