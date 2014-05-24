@@ -55,7 +55,8 @@ io.sockets.on('connection', function(socketObj) {
       io.sockets.emit('id',users);
 
   	socketObj.on('sound', function(message){
-          io.sockets.emit('sound', {message:message,id:users[socketObj.id]})
+
+          io.sockets.emit('soundServer', {message:message})
       });
     socketObj.on("disconnect",function(){
   		io.sockets.emit("disconnected",{message:"is disconnected",id:users[socketObj.id]});
