@@ -34,8 +34,10 @@
         </section>
 
         <section id="my-instrument">
-          <h2>(username)</h2>
-          <div>(instrument image)</div>
+          <h2><%= currentUser.name %></h2>
+          <div>
+            <img width="200" length="200" src="/images/<%= currentUser.instrumentImg %>" />
+          </div>
           <div>(keyboard mappings listed)</div>
         </section>
       </div>
