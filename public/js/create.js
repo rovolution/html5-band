@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('#create-button').click(function() {
     	var bandName = $("#band-name-input").val();
     	console.log("bandname", bandName);
-    	$.post('/create', bandName);
+    	$.post('/create', {"bandName": bandName});
     });
 });
 

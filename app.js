@@ -27,7 +27,8 @@ if ('development' == app.get('env')) {
 var data ={apple:"Apple"};
 //index route
 app.get('/', routes.index);
-app.get('/create', routes.create);
+app.get('/create', routes.chooseName);
+app.post('/create', routes.create);
 app.get('/join', routes.join);
 app.get('/band/:id', routes.band);
  
