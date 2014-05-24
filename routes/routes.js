@@ -58,11 +58,30 @@ exports.join = function(req, res){
 exports.band = function(req, res){
 	//Get band that matches the ID in URL
 	var band = bands.filter(function(band) {
-		return band.id = req.params.id;
+		return band.id == req.params.id;
 	})[0]; 
 
 	if (band) {
 	  res.render('band', { name: band.name, members: band.members });
 	}
 	else res.send(500, "No band found")
+};
+
+/*
+ * Adds member to band and redirects to band room
+ */
+
+exports.joinBand = function(req, res) {
+	var band = bands.filter(function(band) {
+		return band.id == req.body.band;
+	})[0]; 
+
+	var member = {};
+	member.userName = req.body.username;
+	member.instrument = req.body.instrument;
+	member.instrumentImg = member.instrument + '.jpg';
+
+	band.members.push(member);
+
+	res.redirect('/bands/' + band.id)
 };

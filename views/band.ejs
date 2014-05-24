@@ -23,12 +23,12 @@
       <h1><%= name %></h1>
       <div id="content">
         <section>
-          <% for var i in members { %>
+          <% for (var i=0; i < members.length; i++) { %>
             <div class="bandmate-instrument">
               <div class="instrument">
-                <img src="<%= instrumentImg %>" />
+                <img width="200" length="200" src="/images/<%= members[i].instrumentImg %>" />
               </div>
-              <div class="bandmate-name"><%= name %></div>
+              <div class="bandmate-name"><%= members[i].userName %></div>
             </div>          
           <% } %>
         </section>
@@ -48,6 +48,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="/js/vendor/bootstrap.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/javascripts/band.js"></script>
+    <script src="/js/band.js"></script>
   </body>
 </html>

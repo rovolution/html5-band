@@ -35,6 +35,7 @@ app.get('/bands/:id/join', routes.join);
 
 app.get('/create', routes.chooseName);
 app.post('/create', routes.create);
+app.post('/join', routes.joinBand);
 
  
 //Create the server
