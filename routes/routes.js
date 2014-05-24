@@ -1,5 +1,4 @@
 var uuid = require("uuid");
-var currentUser;
 var bands = [];
 
 /*
@@ -63,8 +62,12 @@ exports.band = function(req, res){
 	})[0]; 
 
 	var otherMembers = band.members.filter(function(member) {
-		return member !== currentUser;
+		return member.id !== req.session.userId;
 	});
+
+	var currentUser = band.members.filter(function(member) {
+		return member.id == req.session.userId;
+	})[0];
 
 	if (band) {
 	  res.render('band', { 
@@ -86,12 +89,13 @@ exports.joinBand = function(req, res) {
 	})[0]; 
 
 	var user = {};
+	user.id = uuid.v4();
 	user.userName = req.body.username;
 	user.instrument = req.body.instrument;
 	user.instrumentImg = user.instrument + '.jpg';
 
 	band.members.push(user);
-	currentUser = user;
+	req.session.userId = user.id;
 
 	res.redirect('/bands/' + band.id)
 };

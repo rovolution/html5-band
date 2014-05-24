@@ -26,7 +26,7 @@
           <% for (var i=0; i < members.length; i++) { %>
             <div class="bandmate-instrument">
               <div class="instrument">
-                <img width="200" length="200" src="/images/<%= members[i].instrumentImg %>" />
+                <img class="bandmate-instrument-pic" src="/images/<%= members[i].instrumentImg %>" />
               </div>
               <div class="bandmate-name"><%= members[i].userName %></div>
             </div>          
@@ -34,15 +34,57 @@
         </section>
 
         <section id="my-instrument">
-          <h2><%= currentUser.name %></h2>
+          <h2><%= currentUser.userName %></h2>
           <div>
             <img width="200" length="200" src="/images/<%= currentUser.instrumentImg %>" />
           </div>
-          <div>(keyboard mappings listed)</div>
+          <% if(currentUser.instrument === 'guitar') { %>
+            <% include guitar-instructions %>
+          <% } else if(currentUser.instrument === 'piano') { %>
+            <% include piano-instructions %>
+          <% } else { %>
+            <% include drums-instructions %>
+          <% } %>
+
         </section>
       </div>
     </div><!-- /.container -->
 
+    <!-- Load in audio files -->
+    
+    <!-- Piano Audio -->
+    <audio id="piano-c" preload="auto" src="/sounds/piano/piano_middle_C.mp3"></audio>
+    <audio id="piano-c-sharp" preload="auto" src="/sounds/piano/piano_C_sharp.mp3"></audio>
+    <audio id="piano-d" preload="auto" src="/sounds/piano/piano_D.mp3"></audio>
+    <audio id="piano-d-sharp" preload="auto" src="/sounds/piano/piano_D_sharp.mp3"></audio>
+    <audio id="piano-e" preload="auto" src="/sounds/piano/piano_E.mp3"></audio>
+    <audio id="piano-f" preload="auto" src="/sounds/piano/piano_F.mp3"></audio>
+    <audio id="piano-f-sharp" preload="auto" src="/sounds/piano/piano_F_sharp.mp3"></audio>
+    <audio id="piano-g" preload="auto" src="/sounds/piano/piano_G.mp3"></audio>
+    <audio id="piano-g-sharp" preload="auto" src="/sounds/piano/piano_G_sharp.mp3"></audio>
+    <audio id="piano-a" preload="auto" src="/sounds/piano/piano_A.mp3"></audio>
+    <audio id="piano-a-sharp" preload="auto" src="/sounds/piano/piano_A_sharp.mp3"></audio>
+    <audio id="piano-b" preload="auto" src="/sounds/piano/piano_B.mp3"></audio>
+
+    <!-- Guitar Audio -->
+    <audio id="guitar-string-e" preload="auto" src="/sounds/guitar/1st_String_E_64kb.mp3"></audio>
+    <audio id="guitar-string-b" preload="auto" src="/sounds/guitar/2nd_String_B__64kb.mp3"></audio>
+    <audio id="guitar-string-g" preload="auto" src="/sounds/guitar/3rd_String_G_64kb.mp3"></audio>
+    <audio id="guitar-string-d" preload="auto" src="/sounds/guitar/4th_String_D_64kb.mp3"></audio>
+    <audio id="guitar-string-a" preload="auto" src="/sounds/guitar/5th_String_A_64kb.mp3"></audio>
+    <audio id="guitar-string-e" preload="auto" src="/sounds/guitar/6th_String_E_64kb.mp3"></audio>
+    <audio id="guitar-c" preload="auto" src="/sounds/guitar/C_64kb.mp3"></audio>
+    <audio id="guitar-d" preload="auto" src="/sounds/guitar/D_64kb.mp3"></audio>
+    <audio id="guitar-dm" preload="auto" src="/sounds/guitar/Dm_64kb.mp3"></audio>
+    <audio id="guitar-e" preload="auto" src="/sounds/guitar/E_64kb.mp3"></audio>
+    
+    <!-- Drums Audio -->
+    <audio id="drums-bass" preload="auto" src="/sounds/drums/bass.mp3"></audio>
+    <audio id="drums-snare" preload="auto" src="/sounds/drums/snare.mp3"></audio>
+    <audio id="drums-hi-hat" preload="auto" src="/sounds/drums/hi-hat.mp3"></audio>
+    <audio id="drums-cymbal" preload="auto" src="/sounds/drums/crash.mp3"></audio>
+
+    <!-- /End of load audio files -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
