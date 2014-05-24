@@ -41,34 +41,33 @@ var users = {};
 
 //If the client just connected
 io.sockets.on('connection', function(socketObj) {
-    
-	io.sockets.emit("connected",{message:"is connected",id:socketObj.id});
+    console.log("socketObj--------",socketObj);
+  	io.sockets.emit("connected",{message:"is connected",id:socketObj.id});
 
-	users[socketObj.id]=socketObj.id;
-    io.sockets.emit('id',users);
+  	users[socketObj.id] = socketObj.id;
+      io.sockets.emit('id',users);
 
-	socketObj.on('clientMessage', function(message){
-        io.sockets.emit('serverMessage', {message:message,id:users[socketObj.id]})
-    });
+  	socketObj.on('clientMessage', function(message){
+          io.sockets.emit('serverMessage', {message:message,id:users[socketObj.id]})
+      });
     socketObj.on("disconnect",function(){
-		io.sockets.emit("disconnected",{message:"is disconnected",id:users[socketObj.id]});
-	    delete users[socketObj.id];
-	    io.sockets.emit('id',users);
-	});
-     
+  		io.sockets.emit("disconnected",{message:"is disconnected",id:users[socketObj.id]});
+  	    delete users[socketObj.id];
+  	    io.sockets.emit('id',users);
+  	});
+       
     socketObj.on('clientName', function(userName){
-       users[socketObj.id]=userName;
-       io.sockets.emit('id',users);
+        users[socketObj.id] = userName;
+        io.sockets.emit('id',users);
 
-    });
+     });
   
 });
 
 app.get("/:id",function(req,res){
    var idName = req.params.id;
- 
-   console.log("data by id"+idName);
-   res.render('user',{id:idName});
+   console.log("data by id" + idName);
+   res.render('user',{id:idName });
 });
 
 
