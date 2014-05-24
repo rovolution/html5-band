@@ -26,7 +26,7 @@
           <% for (var i=0; i < members.length; i++) { %>
             <div class="bandmate-instrument">
               <div class="instrument">
-                <img width="200" length="200" src="/images/<%= members[i].instrumentImg %>" />
+                <img class="bandmate-instrument-pic" src="/images/<%= members[i].instrumentImg %>" />
               </div>
               <div class="bandmate-name"><%= members[i].userName %></div>
             </div>          
@@ -38,7 +38,14 @@
           <div>
             <img width="200" length="200" src="/images/<%= currentUser.instrumentImg %>" />
           </div>
-          <div>(keyboard mappings listed)</div>
+          <% if(currentUser.instrument === 'guitar') { %>
+            <% include guitar-instructions %>
+          <% } else if(currentUser.instrument === 'piano') { %>
+            <% include piano-instructions %>
+          <% } else { %>
+            <% include drums-instructions %>
+          <% } %>
+
         </section>
       </div>
     </div><!-- /.container -->
