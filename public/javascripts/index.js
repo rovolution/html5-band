@@ -4,7 +4,7 @@ var socket = io.connect('http://localhost')
 //define socket events
 
 socket.on("connect",function(){
-	
+	console.log("-----------");
 
 });
 
@@ -13,7 +13,7 @@ socket.on("serverMessage",function(data){
 
 });
 socket.on("connected",function(data){
-
+console.log("----data",data);
 });
 socket.on("disconnected",function(data){
 

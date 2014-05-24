@@ -39,7 +39,7 @@ var users = {};
 
 //If the client just connected
 io.sockets.on('connection', function(socketObj) {
-    
+    console.log("socketObj--------",socketObj);
   	io.sockets.emit("connected",{message:"is connected",id:socketObj.id});
 
   	users[socketObj.id] = socketObj.id;
@@ -54,11 +54,11 @@ io.sockets.on('connection', function(socketObj) {
   	    io.sockets.emit('id',users);
   	});
        
-      socketObj.on('clientName', function(userName){
-         users[socketObj.id]=userName;
-         io.sockets.emit('id',users);
+    socketObj.on('clientName', function(userName){
+        users[socketObj.id] = userName;
+        io.sockets.emit('id',users);
 
-      });
+     });
   
 });
 
