@@ -1,12 +1,10 @@
 $(document).ready(function() {
 
-	console.log(user);
-
 	// Map keyboard presses to instrument and sound metadata
 	var keyPressToSoundElemId = {
 		"piano": {
 			"65": "c",
-			"63": "c-sharp",
+			"83": "c-sharp",
 			"68": "d",
 			"70": "d-sharp",
 			"71": "e",
@@ -65,8 +63,14 @@ $(document).ready(function() {
 
 	// attach events
 	socket.on("serverSound",function(data){
-		console.log("serverSound!!");
-		console.log(data);
+		// Get sound reference
+		var audioDOMId = data.instrument + "-" + data.sound;
+		
+		var sound = document.getElementById(audioDOMId);
+		sound.addEventListener("loadedmetadata", function() {
+			sound.currentTime = 0.48;
+		});
+		sound.play();
 	});
 	socket.on("connected",function(data){
 
