@@ -26,7 +26,7 @@ app.use(app.router);
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-var data ={apple:"Apple"};
+
 //index route
 
 // App Routing
@@ -45,6 +45,10 @@ var server = http.createServer(app)
 
 //Start the web socket server
 var io = socketio.listen(server);
+io.configure(function () {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+});
 
 var users = {};
 
@@ -52,7 +56,7 @@ var users = {};
 io.sockets.on('connection', function(socketObj) {
 
     socketObj.on('room', function(room) {
-        socketObj.join(room);
+        socket.join(room);
     });
   	io.sockets.emit("connected",{message:"is connected",id:socketObj.id});
 
