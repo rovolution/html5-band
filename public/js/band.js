@@ -52,7 +52,7 @@ $(document).ready(function() {
 		document.addEventListener("keydown", function(e) {
 
 			var data = {
-				user_id: null,
+				user_id: document.getElementById("user").dataset.id,
 				instrument: myInstrument,
 				sound: keyCodeToSound[e.keyCode]
 			};
@@ -70,7 +70,14 @@ $(document).ready(function() {
 		sound.addEventListener("loadedmetadata", function() {
 			sound.currentTime = 0.48;
 		});
+
+		var soundWaveId = "#soundwave-" + data.user_id;
+		$(soundWaveId).show();
+		$(soundWaveId).addClass('active');
 		sound.play();
+		setTimeout(function() { 
+			$(soundWaveId).removeClass('active');
+		}, 500);
 	});
 	socket.on("connected",function(data){
 

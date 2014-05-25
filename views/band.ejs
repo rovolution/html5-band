@@ -25,7 +25,7 @@
         <section>
           <% for (var i=0; i < members.length; i++) { %>
             <div class="bandmate-container">
-              <div class="soundwave"></div>
+              <div id="soundwave-<%= members[i].id %>" class="soundwave"></div>
               <div class="bandmate-instrument">
                 <div class="instrument">
                   <img class="bandmate-instrument-pic" src="/images/<%= members[i].instrumentImg %>" />
@@ -37,7 +37,7 @@
         </section>
 
         <section id="my-instrument" data-instrument="<%= currentUser.instrument %>">
-          <h2><%= currentUser.userName %></h2>
+          <h2 id="user" data-id="<%= currentUser.id %>"><%= currentUser.userName %></h2>
           <div>
             <img width="200" length="200" src="/images/<%= currentUser.instrumentImg %>" /> 
           </div>
