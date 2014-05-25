@@ -45,10 +45,6 @@ var server = http.createServer(app)
 
 //Start the web socket server
 var io = socketio.listen(server);
-io.configure(function () {
-  io.set("transports", ["xhr-polling"]);
-  io.set("polling duration", 10);
-});
 
 var users = {};
 
