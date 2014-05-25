@@ -52,7 +52,7 @@ var users = {};
 io.sockets.on('connection', function(socketObj) {
 
     socketObj.on('room', function(room) {
-        socket.join(room);
+        socketObj.join(room);
     });
   	io.sockets.emit("connected",{message:"is connected",id:socketObj.id});
 
