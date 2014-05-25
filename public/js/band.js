@@ -41,7 +41,7 @@ $(document).ready(function() {
 	var roomId = window.location.pathname.slice(7).toString();
 	console.log("roomId",roomId);
 	// connect the socket.io server
-	var socket = io.connect('http://lab.socialtables.com:3000')
+	var socket = io.connect('http://lab.socialtables.com')
 	//define socket events
 	var myInstrument = document.getElementById("my-instrument").dataset.instrument;
 	var keyCodeToSound = keyPressToSoundElemId[myInstrument];
