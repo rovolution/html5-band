@@ -41,6 +41,7 @@
           <div>
             <img width="200" length="200" src="/images/<%= currentUser.instrumentImg %>" /> 
           </div>
+          <button id="leave-band-btn" type="button" class="btn btn-danger">Leave Band</button>
           <% if(currentUser.instrument === 'guitar') { %>
             <% include guitar-instructions %>
           <% } else if(currentUser.instrument === 'piano') { %>
