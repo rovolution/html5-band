@@ -36,7 +36,7 @@ $(document).ready(function() {
 		}
 	};
 
-
+	var bandmatesContainer = $('.bandmate-list');
 
 	var roomId = window.location.pathname.slice(7).toString();
 	console.log("roomId",roomId);
@@ -90,25 +90,7 @@ $(document).ready(function() {
 		$.ajax({
 			url: 'http://localhost:3000/bandmates/'+roomId,
 		}).done(function(data){
-			renderBandmates(data.members);
+			bandmatesContainer.html(data);
 		})
 	});
 });
-
-var renderBandmates = function(members, container) {
-	var container = $('.bandmate-list');
-	container.empty();
-	container.append(members.map(function(member){
-		return $([
-			'<div class="bandmate-container">',
-	      '<div id="soundwave-'+member.id+'" class="soundwave"></div>',
-	      '<div class="bandmate-instrument">',
-	        '<div class="instrument">',
-	          '<img class="bandmate-instrument-pic" src="/images/'+ member.instrumentImg +'" />',
-	        '</div>',
-	        '<div class="bandmate-name">'+ member.userName +'</div>',
-	      '</div>',
-	    '</div>'
-	  ].join());
-	}));
-}

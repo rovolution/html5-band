@@ -125,9 +125,13 @@ exports.bandmates = function(req, res) {
 		return member.id !== req.session.userId;
 	});
 
-  res.send(200, {
-  	members: otherMembers,
-  });
+  // res.send(200, {
+  // 	members: otherMembers,
+  // });
+
+  res.render('bandmates', {
+    members: otherMembers,
+  })
 }
 
 exports.leaveBand = function(req, res) {
