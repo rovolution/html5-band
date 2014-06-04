@@ -38,6 +38,9 @@ app.get('/bands/:id/join', routes.join);
 app.get('/create', routes.chooseName);
 app.post('/create', routes.create);
 app.post('/join', routes.joinBand);
+app.get('/leave/:id', routes.leaveBand);
+
+app.get('/bandmates/:id', routes.bandmates);
 
  
 //Create the server

@@ -36,7 +36,7 @@ $(document).ready(function() {
 		}
 	};
 
-
+	var bandmatesContainer = $('.bandmate-list');
 
 	var roomId = window.location.pathname.slice(7).toString();
 	console.log("roomId",roomId);
@@ -80,13 +80,17 @@ $(document).ready(function() {
 		}, 500);
 	});
 	socket.on("connected",function(data){
-
-	console.log("----connected",data);
+		console.log("----connected",data);
 	});
 	socket.on("disconnected",function(data){
-	console.log("disconnected",data)
+		console.log("disconnected",data)
 	});
 	socket.on("id",function(data){
-	console.log("id",data);
+		console.log("id",data);
+		$.ajax({
+			url: 'http://localhost:3000/bandmates/'+roomId,
+		}).done(function(data){
+			bandmatesContainer.html(data);
+		})
 	});
 });

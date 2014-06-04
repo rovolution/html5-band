@@ -22,18 +22,8 @@
     <div class="container">
       <h1><%= name %></h1>
       <div id="content">
-        <section>
-          <% for (var i=0; i < members.length; i++) { %>
-            <div class="bandmate-container">
-              <div id="soundwave-<%= members[i].id %>" class="soundwave"></div>
-              <div class="bandmate-instrument">
-                <div class="instrument">
-                  <img class="bandmate-instrument-pic" src="/images/<%= members[i].instrumentImg %>" />
-                </div>
-                <div class="bandmate-name"><%= members[i].userName %></div>
-              </div>
-            </div>
-          <% } %>
+        <section class="bandmate-list">
+          
         </section>
 
         <section id="my-instrument" data-instrument="<%= currentUser.instrument %>">
@@ -41,7 +31,9 @@
           <div>
             <img width="200" length="200" src="/images/<%= currentUser.instrumentImg %>" /> 
           </div>
-          <button id="leave-band-btn" type="button" class="btn btn-danger">Leave Band</button>
+          <a href="/leave/<%= id %>">
+            <button id="leave-band-btn" type="button" class="btn btn-danger">Leave Band</button>
+          </a>
           <% if(currentUser.instrument === 'guitar') { %>
             <% include guitar-instructions %>
           <% } else if(currentUser.instrument === 'piano') { %>
