@@ -80,13 +80,35 @@ $(document).ready(function() {
 		}, 500);
 	});
 	socket.on("connected",function(data){
-
-	console.log("----connected",data);
+		console.log("----connected",data);
 	});
 	socket.on("disconnected",function(data){
-	console.log("disconnected",data)
+		console.log("disconnected",data)
 	});
 	socket.on("id",function(data){
-	console.log("id",data);
+		console.log("id",data);
+		$.ajax({
+			url: 'http://localhost:3000/bandmates/'+roomId,
+		}).done(function(data){
+			renderBandmates(data.members);
+		})
 	});
 });
+
+var renderBandmates = function(members, container) {
+	var container = $('.bandmate-list');
+	container.empty();
+	container.append(members.map(function(member){
+		return $([
+			'<div class="bandmate-container">',
+	      '<div id="soundwave-'+member.id+'" class="soundwave"></div>',
+	      '<div class="bandmate-instrument">',
+	        '<div class="instrument">',
+	          '<img class="bandmate-instrument-pic" src="/images/'+ member.instrumentImg +'" />',
+	        '</div>',
+	        '<div class="bandmate-name">'+ member.userName +'</div>',
+	      '</div>',
+	    '</div>'
+	  ].join());
+	}));
+}

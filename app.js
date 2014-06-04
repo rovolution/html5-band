@@ -39,6 +39,8 @@ app.get('/create', routes.chooseName);
 app.post('/create', routes.create);
 app.post('/join', routes.joinBand);
 
+app.get('/bandmates/:id', routes.bandmates);
+
  
 //Create the server
 var server = http.createServer(app)

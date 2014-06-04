@@ -1,6 +1,13 @@
 var uuid = require("uuid");
 var bands = [];
 
+var getBand = function(id) {
+  return bands.filter(function(band) {
+    console.log(band.id, id);
+    return band.id === id;
+  })[0]; 
+}
+
 /*
  * GET home page.
  */
@@ -57,26 +64,25 @@ exports.join = function(req, res){
 
 exports.band = function(req, res){
 	//Get band that matches the ID in URL
-	var band = bands.filter(function(band) {
-		return band.id == req.params.id;
-	})[0]; 
+	// var band = bands.filter(function(band) {
+	// 	return band.id == req.params.id;
+	// })[0]; 
+  var band = getBand(req.params.id);
 
-	var otherMembers = band.members.filter(function(member) {
-		return member.id !== req.session.userId;
-	});
+	//need to check now, if band not found, lines later 
+	//would throw cannot access "members" of undefined
+	if (!band) {
+		return res.send(500, "No band found")
+	}
 
 	var currentUser = band.members.filter(function(member) {
-		return member.id == req.session.userId;
+		return member.id === req.session.userId;
 	})[0];
 
-	if (band) {
-	  res.render('band', { 
-	  	name: band.name,
-	  	members: otherMembers,
-	  	currentUser: currentUser 
-	  });
-	}
-	else res.send(500, "No band found")
+  res.render('band', { 
+  	name: band.name,
+  	currentUser: currentUser 
+  });
 };
 
 /*
@@ -84,9 +90,15 @@ exports.band = function(req, res){
  */
 
 exports.joinBand = function(req, res) {
-	var band = bands.filter(function(band) {
-		return band.id == req.body.band;
-	})[0]; 
+	// var band = bands.filter(function(band) {
+	// 	return band.id == req.body.band;
+	// })[0]; 
+
+  var band = getBand(req.body.band);
+
+  if (!band) {
+    return res.send(500, "No band found");
+  }
 
 	var user = {};
 	user.id = uuid.v4();
@@ -99,3 +111,20 @@ exports.joinBand = function(req, res) {
 
 	res.redirect('/bands/' + band.id)
 };
+
+exports.bandmates = function(req, res) {
+	//Get band that matches the ID in URL
+	var band = getBand(req.params.id);
+
+	if (!band) {
+		return res.send(500, "No band found");
+	}
+
+	var otherMembers = band.members.filter(function(member) {
+		return member.id !== req.session.userId;
+	});
+
+  res.send(200, {
+  	members: otherMembers,
+  });
+}
