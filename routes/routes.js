@@ -80,6 +80,7 @@ exports.band = function(req, res){
 	})[0];
 
   res.render('band', { 
+    id: band.id,
   	name: band.name,
   	currentUser: currentUser 
   });
@@ -127,4 +128,22 @@ exports.bandmates = function(req, res) {
   res.send(200, {
   	members: otherMembers,
   });
+}
+
+exports.leaveBand = function(req, res) {
+  var band = getBand(req.params.id);
+
+  if (!band) {
+    return res.send(500, "No band found");
+  }
+
+  band.members.forEach(function(member, index) {
+    if (member.id === req.session.userId) {
+      band.members.splice(index, 1);
+    }
+  });
+
+  delete req.session.userId;
+
+  res.redirect('/');
 }
