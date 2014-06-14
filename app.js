@@ -61,10 +61,10 @@ io.sockets.on('connection', function(socketObj) {
 
   	socketObj.on('sound', function(message){
 
-          io.sockets.emit('serverSound', message);
+              io.sockets.emit('serverSound', message);
       });
     socketObj.on("disconnect",function(){
-  		io.sockets.emit("disconnected",{message:"is disconnected",id:users[socketObj.id]});
+  		io.sockets.emit("disconnected",{message:"is disconnected",id:users[socketObj.id] });
   	    delete users[socketObj.id];
   	    io.sockets.emit('id',users);
   	});

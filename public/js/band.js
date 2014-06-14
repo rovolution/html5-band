@@ -58,6 +58,19 @@ $(document).ready(function() {
 			};
 			socket.emit('sound', data);
 		});
+
+        // added an event to the click btn to leave the band.
+        $('#leave-band-btn').click(function() {
+//            var data = {
+//                user_id: document.getElementById("user").dataset.id
+//            };
+            //socket.broadcast.emit("disconnect");
+            // redirect the user to index
+            $.get('/',
+                function() {
+                    window.location = "/"
+                });
+        });
 	});
 
 
@@ -80,13 +93,28 @@ $(document).ready(function() {
 		}, 500);
 	});
 	socket.on("connected",function(data){
+    console.log("----connected",data );
+        // Append to the content div of the band.
 
-	console.log("----connected",data);
+
+//        $('#content.section:first').append(
+//            '<div class="bandmate-container"><div id="soundwave-' + data.id + '" class="soundwave"></div>' +
+//                '<div class="bandmate-instrument"><div class="instrument"><img class="bandmate-instrument-pic" src="/images/' + data.instrumentImg +'" />' +
+//                    '</div>' +
+//                    '<div class="bandmate-name">'+data.userName +'</div>' +
+//                    '</div></div>'
+//        );
+
+
 	});
 	socket.on("disconnected",function(data){
-	console.log("disconnected",data)
+	    console.log("disconnected",data);
+
+        // need to remove the user from the screen
 	});
 	socket.on("id",function(data){
-	console.log("id",data);
+	    console.log("id",data);
 	});
+
+
 });
