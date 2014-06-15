@@ -22,24 +22,22 @@
     <div class="container">
       <h1><%= name %></h1>
       <div id="content">
-        <section>
-          <% for (var i=0; i < members.length; i++) { %>
-            <div class="bandmate-container">
-              <div id="soundwave-<%= members[i].id %>" class="soundwave"></div>
-              <div class="bandmate-instrument">
-                <div class="instrument">
-                  <img class="bandmate-instrument-pic" src="/images/<%= members[i].instrumentImg %>" />
-                </div>
-                <div class="bandmate-name"><%= members[i].userName %></div>
-              </div>
-            </div>
-          <% } %>
+
+        <!-- need to take dynamically render this part somehow,
+        need to be able to call it when a connect or disconnect event is fired. -->
+          <!--I could render this somehow using an express route, that returns the current members
+          but how would that display dynamically?-->
+          <!-- I could link to a javascript method that gets the from the express route the members of the band
+            then on connect socket event, fire this method again...  -->
+
+        <section id="memberlist">
+            test
         </section>
 
         <section id="my-instrument" data-instrument="<%= currentUser.instrument %>">
           <h2 id="user" data-id="<%= currentUser.id %>"><%= currentUser.userName %></h2>
           <div>
-            <img width="200" length="200" src="/images/<%= currentUser.instrumentImg %>" /> 
+            <img width="200" width="200" src="/images/<%= currentUser.instrumentImg %>" />
           </div>
           <button id="leave-band-btn" type="button" class="btn btn-danger">Leave Band</button>
           <% if(currentUser.instrument === 'guitar') { %>

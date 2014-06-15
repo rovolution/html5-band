@@ -6,7 +6,7 @@ var express = require('express');
 var routes = require('./routes/routes.js');
 var http = require('http');
 var path = require('path');
-var socketio = require('socket.io')
+var socketio = require('socket.io');
 var app = express();
 
 // all environments
@@ -34,14 +34,14 @@ app.get('/', routes.index);
 app.get('/bands', routes.list);
 app.get('/bands/:id', routes.band);
 app.get('/bands/:id/join', routes.join);
-
+app.get('/bands/:id/members', routes.members);
 app.get('/create', routes.chooseName);
 app.post('/create', routes.create);
 app.post('/join', routes.joinBand);
-
+app.post('/bands/:id/leaveBand', routes.leaveBand);
  
 //Create the server
-var server = http.createServer(app)
+var server = http.createServer(app);
 
 //Start the web socket server
 var io = socketio.listen(server);
@@ -63,8 +63,13 @@ io.sockets.on('connection', function(socketObj) {
 
               io.sockets.emit('serverSound', message);
       });
+    socketObj.on('leave', function(message){
+
+        io.sockets.emit('serverSound', message);
+    });
     socketObj.on("disconnect",function(){
   		io.sockets.emit("disconnected",{message:"is disconnected",id:users[socketObj.id] });
+
   	    delete users[socketObj.id];
   	    io.sockets.emit('id',users);
   	});

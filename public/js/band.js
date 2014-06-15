@@ -41,14 +41,14 @@ $(document).ready(function() {
 	var roomId = window.location.pathname.slice(7).toString();
 	console.log("roomId",roomId);
 	// connect the socket.io server
-	var socket = io.connect('http://localhost')
+	var socket = io.connect('http://localhost');
 	//define socket events
 	var myInstrument = document.getElementById("my-instrument").dataset.instrument;
 	var keyCodeToSound = keyPressToSoundElemId[myInstrument];
 
 	socket.on("connect",function() {
 		socket.emit("room",roomId);
-
+        //reloadUsers();
 		document.addEventListener("keydown", function(e) {
 
 			var data = {
@@ -60,16 +60,9 @@ $(document).ready(function() {
 		});
 
         // added an event to the click btn to leave the band.
+        var user = document.getElementById("user").dataset.id;
         $('#leave-band-btn').click(function() {
-//            var data = {
-//                user_id: document.getElementById("user").dataset.id
-//            };
-            //socket.broadcast.emit("disconnect");
-            // redirect the user to index
-            $.get('/',
-                function() {
-                    window.location = "/"
-                });
+            $.post(window.location.pathname+'/leaveBand');
         });
 	});
 
@@ -94,6 +87,7 @@ $(document).ready(function() {
 	});
 	socket.on("connected",function(data){
     console.log("----connected",data );
+        reloadUsers();
         // Append to the content div of the band.
 
 
@@ -109,12 +103,22 @@ $(document).ready(function() {
 	});
 	socket.on("disconnected",function(data){
 	    console.log("disconnected",data);
+        reloadUsers();
 
         // need to remove the user from the screen
 	});
 	socket.on("id",function(data){
 	    console.log("id",data);
+        //reloadUsers();
 	});
 
 
 });
+
+function reloadUsers(){
+    var user = document.getElementById("user").dataset.id;
+    $.get(window.location.pathname+'/members', { user_id: user },
+        function(data){
+            $('#memberlist').html(data);
+        });
+}
