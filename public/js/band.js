@@ -60,9 +60,11 @@ $(document).ready(function() {
 		});
 
         // added an event to the click btn to leave the band.
-        var user = document.getElementById("user").dataset.id;
         $('#leave-band-btn').click(function() {
             $.post(window.location.pathname+'/leaveBand');
+            $.get('/', function(){
+                window.location = '/';
+            })
         });
 	});
 
@@ -88,28 +90,13 @@ $(document).ready(function() {
 	socket.on("connected",function(data){
     console.log("----connected",data );
         reloadUsers();
-        // Append to the content div of the band.
-
-
-//        $('#content.section:first').append(
-//            '<div class="bandmate-container"><div id="soundwave-' + data.id + '" class="soundwave"></div>' +
-//                '<div class="bandmate-instrument"><div class="instrument"><img class="bandmate-instrument-pic" src="/images/' + data.instrumentImg +'" />' +
-//                    '</div>' +
-//                    '<div class="bandmate-name">'+data.userName +'</div>' +
-//                    '</div></div>'
-//        );
-
-
 	});
 	socket.on("disconnected",function(data){
 	    console.log("disconnected",data);
         reloadUsers();
-
-        // need to remove the user from the screen
 	});
 	socket.on("id",function(data){
 	    console.log("id",data);
-        //reloadUsers();
 	});
 
 

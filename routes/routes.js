@@ -113,7 +113,7 @@ exports.joinBand = function(req, res) {
 
 exports.leaveBand = function(req, res) {
     var band = bands.filter(function(band) {
-        return band.id == req.body.band;
+        return band.id === req.params.id;
     })[0];
 
     band.members.forEach(function (item, index) {
@@ -121,8 +121,4 @@ exports.leaveBand = function(req, res) {
             band.members.splice(index, 1);
         }
     });
-
-    //delete req.session.userId;
-
-    res.redirect('/');
 };
