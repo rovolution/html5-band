@@ -23,14 +23,14 @@ exports.create = function(req, res) {
 	var id = uuid.v4();
 
 	//Instantiate a new "band" object
-	var newBand = {"id": id, "name": name, "members": []}
+	var newBand = {"id": id, "name": name, "members": []};
 
 	//Add it to the array of bands
 	bands.push(newBand);
 
 	//Take user to join band page to select name and instrument 
 	res.send(newBand.id);
-}
+};
 
 
 /*
@@ -59,26 +59,37 @@ exports.band = function(req, res){
 	//Get band that matches the ID in URL
 	var band = bands.filter(function(band) {
 		return band.id == req.params.id;
-	})[0]; 
-
-	var otherMembers = band.members.filter(function(member) {
-		return member.id !== req.session.userId;
-	});
+	})[0];
 
 	var currentUser = band.members.filter(function(member) {
-		return member.id == req.session.userId;
-	})[0];
+        return member.id == req.session.userId;
+    })[0];
 
 	if (band) {
 	  res.render('band', { 
 	  	name: band.name,
-	  	members: otherMembers,
-	  	currentUser: currentUser 
+	  	currentUser: currentUser
 	  });
 	}
 	else res.send(500, "No band found")
 };
 
+exports.members = function(req, res){
+    //Get band that matches the ID in URL
+    var band = bands.filter(function(band) {
+        return band.id === req.params.id;
+    })[0];
+
+    var otherMembers = band.members.filter(function(member) {
+        return member.id !== req.param("user_id");
+    });
+
+    if (band) {
+        res.render("members", { members: otherMembers });
+    }
+    else res.send(500, "No band found")
+
+};
 /*
  * Adds member to band and redirects to band room
  */
@@ -98,4 +109,16 @@ exports.joinBand = function(req, res) {
 	req.session.userId = user.id;
 
 	res.redirect('/bands/' + band.id)
+};
+
+exports.leaveBand = function(req, res) {
+    var band = bands.filter(function(band) {
+        return band.id === req.params.id;
+    })[0];
+
+    band.members.forEach(function (item, index) {
+        if(item.id === req.session.userId){
+            band.members.splice(index, 1);
+        }
+    });
 };

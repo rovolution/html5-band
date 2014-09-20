@@ -41,14 +41,14 @@ $(document).ready(function() {
 	var roomId = window.location.pathname.slice(7).toString();
 	console.log("roomId",roomId);
 	// connect the socket.io server
-	var socket = io.connect('http://localhost')
+	var socket = io.connect('http://localhost');
 	//define socket events
 	var myInstrument = document.getElementById("my-instrument").dataset.instrument;
 	var keyCodeToSound = keyPressToSoundElemId[myInstrument];
 
 	socket.on("connect",function() {
 		socket.emit("room",roomId);
-
+        //reloadUsers();
 		document.addEventListener("keydown", function(e) {
 
 			var data = {
@@ -58,6 +58,14 @@ $(document).ready(function() {
 			};
 			socket.emit('sound', data);
 		});
+
+        // added an event to the click btn to leave the band.
+        $('#leave-band-btn').click(function() {
+            $.post(window.location.pathname+'/leaveBand');
+            $.get('/', function(){
+                window.location = '/';
+            })
+        });
 	});
 
 
@@ -80,13 +88,24 @@ $(document).ready(function() {
 		}, 500);
 	});
 	socket.on("connected",function(data){
-
-	console.log("----connected",data);
+    console.log("----connected",data );
+        reloadUsers();
 	});
 	socket.on("disconnected",function(data){
-	console.log("disconnected",data)
+	    console.log("disconnected",data);
+        reloadUsers();
 	});
 	socket.on("id",function(data){
-	console.log("id",data);
+	    console.log("id",data);
 	});
+
+
 });
+
+function reloadUsers(){
+    var user = document.getElementById("user").dataset.id;
+    $.get(window.location.pathname+'/members', { user_id: user },
+        function(data){
+            $('#memberlist').html(data);
+        });
+}
